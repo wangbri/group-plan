@@ -71,8 +71,8 @@ export default class Scheduler extends Component {
 
   static defaultProps = {
     from: new RangeDate(),
-    to: new RangeDate().advance('weeks', 4),
-    rowHeight: 30,
+    to: new RangeDate().advance('days', 1),
+    rowHeight: 20,
     selectorStyles: {},
     chartStyles: {}
   }
