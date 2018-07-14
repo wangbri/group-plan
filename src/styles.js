@@ -98,7 +98,9 @@ export const eventStyles = {
   top: 0,
   left: '4px',
   borderRadius: '3px',
-  padding: '2px 5px'
+  padding: '2px 5px',
+  width: '80px',
+  height: '45px'
 }
 
 export const partialEventStyles = {

@@ -8,44 +8,15 @@ import { whyDidYouUpdate } from 'why-did-you-update';
 // Uncomment this to examine where you can get performance boosts
 //whyDidYouUpdate(React);
 
-var resources = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'],
+var resources = ['7am', '9am', '11am', '1pm', '3pm', '5pm', '7pm'],
     today = new RangeDate(new Date()),
     events = [
       {
         id: 'foobar',
         title: 'Do this',
-        startDate: today.advance('days', 1).toRef(),
-        duration: 5,
-        resource: 'One'
-      },
-      {
-        id: 'barfoo',
-        title: 'Do that',
-        startDate: today.advance('days', 3).toRef(),
-        duration: 4,
-        resource: 'Two'
-      },
-      {
-        id: 'barfoobaz',
-        title: 'I am disabled',
-        startDate: today.advance('days', 2).toRef(),
-        duration: 7,
-        resource: 'Three',
-        disabled: true
-      },
-      {
-        id: 'foobah',
-        title: 'Do another thing',
-        startDate: today.advance('days', 6).toRef(),
-        duration: 14,
-        resource: 'Seven'
-      },
-      {
-        id: 'foobaz',
-        title: 'Do another thing next month',
-        startDate: today.advance('days', 36).toRef(),
-        duration: 14,
-        resource: 'Seven'
+        startDate: today.advance('days', 0).toRef(),
+        duration: 1,
+        resource: '7am'
       }
     ]
 
@@ -61,13 +32,13 @@ class Basic extends React.Component {
     }
   }
 
-  eventChanged(props) {
+  eventChanged() {
     const index = this.state.events.findIndex(event => event.id === props.id)
     const newEvents = this.state.events
     newEvents[index] = props
     this.setState({ ...props, events: newEvents })
     console.log(props)
-  }
+  }props
 
   eventResized(props) {
     const index = this.state.events.findIndex(event => event.id === props.id)
@@ -82,9 +53,26 @@ class Basic extends React.Component {
     console.log(props)
   }
 
-  cellClicked(resource, date) {
-    alert(`You clicked on ${resource} - ${date}`)
-    console.log(resource, date)
+  cellClicked(props) {
+    var newEvents = this.state.events
+    var newEvent = {
+      id: props.id,
+      title: props.title,
+      startDate: props.startDate,
+      duration: props.duration,
+      resource: props.resource
+    };
+    newEvents.push(newEvent);
+    console.log(newEvents);
+    this.setState({events: newEvents});
+
+    // const index = this.state.events.findIndex(event => event.id === props.id)
+    // const newEvents = this.state.events
+    // newEvents[index] = props
+    // this.setState({ ...props, events: newEvents })
+    // console.log(props)
+
+
   }
 
   rangeChanged(range) {

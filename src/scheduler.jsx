@@ -72,7 +72,7 @@ export default class Scheduler extends Component {
   static defaultProps = {
     from: new RangeDate(),
     to: new RangeDate().advance('days', 1),
-    rowHeight: 20,
+    rowHeight: 60,
     selectorStyles: {},
     chartStyles: {}
   }
@@ -118,9 +118,10 @@ export default class Scheduler extends Component {
     if (onEventClicked) onEventClicked({ id, title, startDate, duration, resource, disabled })
   }
 
-  fireCellClicked = (resource, date) => {
-    const { onCellClicked } = this.props
-    if (onCellClicked) onCellClicked(resource, date)
+  fireCellClicked = (props) => {
+    const { onCellClicked } = this.props,
+          { id, title, startDate, duration, resource, disabled } = props
+    if (onCellClicked) onCellClicked({ id, title, startDate, duration, resource, disabled})
   }
 
   fireRangeChanged = (range) => {
