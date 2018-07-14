@@ -52,8 +52,8 @@ var resources = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight',
 class Basic extends React.Component {
   constructor(props) {
     super(props)
-    // let from = new RangeDate() # Removed by Josh
-    // let to = from.advance('weeks', 2)
+    let from = new RangeDate() // Removed by Josh
+    let to = from.advance('days', 1)
 
     this.state = {
       events: props.events,
