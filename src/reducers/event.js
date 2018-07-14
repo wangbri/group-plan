@@ -15,6 +15,17 @@ export default (state = defaultState, action) => {
   case 'replaceEvents':
     const events = fromJS(action.events)
     return state.setIn(['events'], events)
+  // Added by Josh
+  case 'addEvent':
+    newEvent = Map(action.event).withMutations(map => {
+      map.set('startDate', action.cell.date).
+        set('resource', action.cell.resource)
+    }).filter((value, key) => ['styles', 'duration', 'id', 'resource', 'startDate', 'title'].includes(key))
+    index = state.get('events').findIndex(item => {
+      return item.get('id') === action.event.id
+    })
+    return state.setIn(['events', index], newEvent)
+  // Added by Josh
   case 'moveEvent':
     newEvent = Map(action.event).withMutations(map => {
       map.set('startDate', action.cell.date).
@@ -24,7 +35,6 @@ export default (state = defaultState, action) => {
     index = state.get('events').findIndex(item => {
       return item.get('id') === action.event.id
     })
-
     return state.setIn(['events', index], newEvent)
   case 'updateEventDuration':
     newEvent = Map(action.event).withMutations(map => {

@@ -7,6 +7,17 @@ export function moveEvent(event, cell, callback) {
   }
 }
 
+// Added by Josh
+export function addEvent(event, cell, callback) {
+  return {
+    type: 'addEvent',
+    callback,
+    event,
+    cell
+  }
+}
+// Added by Josh
+
 export function updateEventDuration(event, duration, callback) {
   return {
     type: 'updateEventDuration',
